@@ -8,7 +8,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    </head>
+</head>
 <body>
 
 <nav class="navbar">
@@ -47,7 +47,7 @@
             <p>Inquire us using the fields below. We'll reach out to you :D</p>
           </div>
           <div class="wow fadeInUp" data-wow-delay="0.4s">
-            <form id="contact-form" action="#" method="get">
+            <form id="contact-form" action="/contact/" method="post">
               <div class="col-md-6 col-sm-6">
                 <input type="text" class="form-control" name="name" placeholder="Name" required="">
               </div>
@@ -60,6 +60,11 @@
               <div class="col-md-offset-8 col-md-4 col-sm-offset-6 col-sm-6">
                 <button id="submit" type="submit" class="form-control" name="submit">Send Message</button>
               </div>
+              {% if message %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+            {% endif %}
             </form>
           </div>
         </div>
@@ -78,8 +83,25 @@
   </section>
 </main>
 
-<script src="script.js"></script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const contactForm = document.getElementById('contact-form');
+
+    // Smooth scroll functionality
+    document.querySelectorAll('.navbar a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            window.scrollTo({
+                top: target.offsetTop,
+                behavior: 'smooth'
+            });
+        });
+    });
+
+});
+</script>
 
 </body>
 </html>
